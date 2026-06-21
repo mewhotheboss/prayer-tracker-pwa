@@ -1,0 +1,28 @@
+{
+  "short_name": "Prayer Tracker",
+  "name": "Prayer Tracker | Daily Prayer & Spiritual Tracker",
+  "description": "An offline-first tracker for your daily 5 waqt prayers and amols.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0B0F19",
+  "theme_color": "#0D5C4D",
+  "display": "standalone",
+  "orientation": "portrait"
+}

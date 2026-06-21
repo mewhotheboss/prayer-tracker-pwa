@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Prayer Tracker | Islamic Daily Prayer & Spiritual Tracker PWA</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="A beautiful offline-first Progressive Web App to track your daily 5 waqt prayers, morning/evening zikr, and custom spiritual amols.">
+  <meta name="theme-color" content="#0D5C4D">
+  
+  <!-- PWA iOS Specific Features -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prayer Tracker">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  
+  <!-- Manifest, Favicon & Styles -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Offline status notification -->
+    <div id="offline-banner" class="offline-banner">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        <path d="M0 8A8 8 0 1 1 16 8A8 8 0 0 1 0 8zm8-7a7 7 0 1 0 0 14A7 7 0 0 0 8 1z"/>
+      </svg>
+      You are currently offline. Data is saved locally.
+    </div>
+
+    <!-- Main Header -->
+    <header>
+      <div class="logo-area">
+        <!-- Logo SVG -->
+        <svg class="logo-icon" viewBox="0 0 512 512" fill="none">
+          <circle cx="256" cy="256" r="236" fill="url(#header-bg)" stroke="url(#header-gold)" stroke-width="8" />
+          <defs>
+            <radialGradient id="header-bg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#0D5C4D" />
+              <stop offset="100%" stop-color="#073B32" />
+            </radialGradient>
+            <linearGradient id="header-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FCD34D" />
+              <stop offset="100%" stop-color="#D97706" />
+            </linearGradient>
+          </defs>
+          <path d="M 280,150 A 110,110 0 1,0 350,330 A 90,90 0 1,1 280,150 Z" fill="url(#header-gold)" />
+          <path d="M 335,215 L 340,230 L 355,230 L 343,240 L 347,255 L 335,245 L 323,255 L 327,240 L 315,230 L 330,230 Z" fill="url(#header-gold)" />
+        </svg>
+        <div class="app-title">
+          <h1>Prayer Tracker</h1>
+          <p>Islamic Spiritual Tracker</p>
+        </div>
+      </div>
+      
+      <!-- Current Streak Count -->
+      <div class="header-stats" title="Spiritual Streak">
+        <svg class="streak-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2.478 7C1.866 8.796 1 10.582 1 12c0 2.2 1.8 4 4 4h3z"/>
+        </svg>
+        <span class="streak-count" id="active-streak-display">0 Days</span>
+      </div>
+    </header>
+
+    <main>
+      
+      <!-- VIEW 1: DAILY TRACKER (DEFAULT) -->
+      <section id="tracker-view" class="view active">
+        
+        <!-- PWA Installation Promo -->
+        <div id="install-promo" class="install-promo">
+          <div class="install-promo-text">
+            <span class="install-promo-title">Add to Home Screen</span>
+            <span class="install-promo-desc">Install Prayer Tracker for quick offline access.</span>
+          </div>
+          <button id="btn-install" class="btn-install">Install</button>
+        </div>
+
+        <!-- Date Navigation Controls -->
+        <div class="date-navigator">
+          <button class="nav-btn" id="prev-date-btn" aria-label="Previous day">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          <div class="date-display" id="date-picker-trigger" title="Select Date">
+            <h2 id="current-date-label">Saturday, June 20, 2026</h2>
+            <p id="relative-date-label">Today</p>
+            <input type="date" id="date-input" class="date-input-hidden">
+          </div>
+          
+          <button class="nav-btn" id="next-date-btn" aria-label="Next day">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Five Waqt Prayer Tracker -->
+        <div>
+          <h3 class="card-section-title">Five Waqt Prayers</h3>
+          <div class="cards-container" id="prayers-list-container">
+            <!-- Populated dynamically via app.js -->
+          </div>
+        </div>
+
+        <!-- Other Daily Amol Checklist -->
+        <div>
+          <h3 class="card-section-title">Daily Amols</h3>
+          <div class="cards-container" id="amols-list-container">
+            <!-- Populated dynamically via app.js -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- VIEW 2: INSIGHTS & STATS -->
+      <section id="insights-view" class="view">
+        
+        <!-- Timeframe Selector -->
+        <div class="date-navigator" style="margin-bottom: 4px;">
+          <span style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">Timeframe</span>
+          <select id="insights-timeframe-select" class="custom-input" style="width: auto; padding: 6px 12px; font-size: 0.85rem; border-radius: 8px; border-color: var(--border-color); background-color: rgba(255, 255, 255, 0.05); color: var(--text-primary);">
+            <option value="last-30">Last 30 Days</option>
+          </select>
+        </div>
+
+        <!-- Overall Progress Ring Card -->
+        <div class="progress-card">
+          <div class="progress-info">
+            <h3 class="progress-title">Today's Progress</h3>
+            <p class="progress-desc" id="progress-card-desc">Complete your prayers & amols to fill the ring.</p>
+          </div>
+          <div class="circle-chart-container">
+            <svg class="circle-chart" viewBox="0 0 92 92">
+              <defs>
+                <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#34d399" />
+                  <stop offset="100%" stop-color="#059669" />
+                </linearGradient>
+              </defs>
+              <circle class="circle-bg" cx="46" cy="46" r="40" />
+              <circle id="overall-progress-ring" class="circle-val" cx="46" cy="46" r="40" />
+            </svg>
+            <div class="circle-text" id="progress-percentage-label">0%</div>
+          </div>
+        </div>
+
+        <!-- Numerical stats grid -->
+        <div class="insights-grid-three">
+          <div class="stat-card" style="padding: 12px 6px; align-items: center; text-align: center;">
+            <span class="stat-header" style="font-size: 0.65rem; letter-spacing: 0;">On Time</span>
+            <span class="stat-value" id="stats-ontime-prayers" style="font-size: 1.2rem; margin-top: 2px;">0%</span>
+            <span class="stat-footer" id="stats-ontime-details" style="font-size: 0.55rem; color: var(--text-muted);">Last 30 Days</span>
+          </div>
+          <div class="stat-card" style="padding: 12px 6px; align-items: center; text-align: center;">
+            <span class="stat-header" style="font-size: 0.65rem; letter-spacing: 0;">Complete</span>
+            <span class="stat-value" id="stats-complete-prayers" style="font-size: 1.2rem; margin-top: 2px;">0%</span>
+            <span class="stat-footer" id="stats-complete-details" style="font-size: 0.55rem; color: var(--text-muted);">Last 30 Days</span>
+          </div>
+          <div class="stat-card" style="padding: 12px 6px; align-items: center; text-align: center;">
+            <span class="stat-header" style="font-size: 0.65rem; letter-spacing: 0;">Incomplete</span>
+            <span class="stat-value" id="stats-incomplete-prayers" style="font-size: 1.2rem; margin-top: 2px;">0%</span>
+            <span class="stat-footer" id="stats-incomplete-details" style="font-size: 0.55rem; color: var(--text-muted);">Last 30 Days</span>
+          </div>
+        </div>
+
+        <!-- Weekly Prayer breakdown grid -->
+        <div class="weekly-bar-card">
+          <h3 class="heatmap-title">Weekly Tracker</h3>
+          <div class="weekly-days-row" id="weekly-breakdown-container">
+            <!-- Dynamic columns for 7 days, each containing dots for 5 prayers -->
+          </div>
+        </div>
+
+        <!-- Spiritual Heatmap -->
+        <div class="heatmap-card">
+          <div class="heatmap-header">
+            <h3 class="heatmap-title">Spiritual Heatmap</h3>
+            <span class="stat-footer" id="heatmap-month-label">June 2026</span>
+          </div>
+          
+          <div class="heatmap-grid" id="heatmap-grid-container">
+            <!-- 7 columns for weekdays + cell elements generated by JS -->
+          </div>
+          
+          <div class="heatmap-legend">
+            <span>Less consistent</span>
+            <div class="legend-square" data-score="0"></div>
+            <div class="legend-square" data-score="1"></div>
+            <div class="legend-square" data-score="2"></div>
+            <div class="legend-square" data-score="3"></div>
+            <div class="legend-square" data-score="4"></div>
+            <div class="legend-square" data-score="5"></div>
+            <span>On-Time Complete</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- VIEW 3: SETTINGS & CUSTOMIZATION -->
+      <section id="settings-view" class="view">
+        
+        <!-- Add Custom Amol Form -->
+        <div class="settings-list-card">
+          <h3 class="heatmap-title">Add Custom Amol</h3>
+          <p class="stat-footer" style="margin-top: 4px; margin-bottom: 12px;">Create custom spiritual tasks that repeat daily, such as reading Quran, charity, or dhikr.</p>
+          
+          <form id="custom-amol-form" class="settings-group" onsubmit="return false;">
+            <div class="input-container">
+              <div class="input-glow-wrapper">
+                <input type="text" id="custom-amol-input" class="custom-input" placeholder="e.g. Recite Surah Al-Mulk" required autocomplete="off">
+              </div>
+              <button type="submit" class="btn-primary">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Manage Custom Amols -->
+        <div class="settings-list-card">
+          <h3 class="heatmap-title">Manage Custom Amols</h3>
+          <div class="settings-list" id="custom-amols-manager-container">
+            <!-- Active custom amols with delete buttons will render here -->
+          </div>
+        </div>
+
+        <!-- Reset Application Settings (Danger Zone) -->
+        <div class="settings-list-card danger-zone">
+          <h3 class="heatmap-title danger-zone-title">Danger Zone</h3>
+          <p class="stat-footer" style="margin-top: 4px;">Clearing application data resets all records, streaks, and custom amols. This action is irreversible.</p>
+          <button id="btn-reset-data" class="btn-danger">Clear All Data</button>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Bottom Sticky Navigation Tabs -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-view="tracker-view" id="nav-tracker" aria-label="Daily Tracker View">
+        <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+        <span class="nav-item-label">Tracker</span>
+      </button>
+      
+      <button class="nav-item" data-view="insights-view" id="nav-insights" aria-label="Insights View">
+        <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+        <span class="nav-item-label">Insights</span>
+      </button>
+      
+      <button class="nav-item" data-view="settings-view" id="nav-settings" aria-label="Settings View">
+        <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span class="nav-item-label">Settings</span>
+      </button>
+    </nav>
+
+    <!-- Success Toast Popups -->
+    <div id="toast" class="toast-msg">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg>
+      <span id="toast-text">Changes saved!</span>
+    </div>
+
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
