@@ -778,6 +778,11 @@ main {
   outline: none;
   transition: var(--transition-smooth);
 }
+select option,
+.custom-input option {
+  background-color: var(--bg-card-solid);
+  color: var(--text-primary);
+}
 
 .custom-input:focus {
   border-color: var(--accent-teal-bright);
