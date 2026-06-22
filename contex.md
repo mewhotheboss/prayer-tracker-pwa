@@ -92,6 +92,8 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
 * **Latest Verification:** Verified and updated on June 22, 2026.
+  * **Fixed Bottom Navigation & Toast Position:** Moved the bottom navigation bar (`nav.bottom-nav`) and toast notification (`#toast`) outside the `.app-container` directly into `<body>`. This resolves the issue where `backdrop-filter: blur(10px)` on the container overrode their fixed positioning, causing them to scroll with the page.
+  * **Service Worker Version Bump:** Bumped service worker cache version to `prayer-tracker-v2` in `sw.js` to force browsers to update and load the newest layout changes.
   * **Dropdown Styling Fix:** Resolved a white-on-white text rendering issue for options inside `#insights-timeframe-select` dropdown in dark mode by styling `<option>` tags explicitly to use a dark background (`var(--bg-card-solid)`) and light text (`var(--text-primary)`).
   * **Automated & Manual Tests:** Verified navigation tabs, changing prayer status (toast and card color updates), logging amols, checking circular progress chart responsiveness, and verifying service worker caching.
   * **Favicon Integration:** Linked `icon.svg` as the favicon in `index.html` to resolve standard 404 console errors.
