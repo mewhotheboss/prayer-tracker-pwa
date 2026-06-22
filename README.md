@@ -69,6 +69,7 @@ This app is optimized for instant hosting on Vercel as a Static Site. Since Verc
 1. Push your code to a GitHub repository.
 2. Sign in to your [Vercel Account](https://vercel.com/) and click **Add New > Project**.
 3. Import your repository and click **Deploy** (Vercel automatically detects it as a static site and handles hosting).
+4. **Configuration Note:** Ensure that the **Production Branch** in Vercel settings is set to match your repository (e.g., `master`), and leave the **Build Command** disabled/empty since this is a pure static site.
 
 ---
 

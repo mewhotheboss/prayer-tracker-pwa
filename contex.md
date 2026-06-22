@@ -91,6 +91,7 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
-* **Latest Verification:** Verified via automated browser subagent tests (June 21, 2026).
-  * Tested elements: local server hosting on port 8085, navigation tabs, changing Fajr prayer status (toast and card color update), checking Morning Zikr card, verification of progress updates in the circular chart on the Insights page (increases from 0% -> 25% -> 33%), adding custom amol templates, logging custom amols on the tracker, and deleting templates from settings.
-  * Favicon integration: Linked `icon.svg` as the favicon in `index.html` to resolve standard 404 console errors on deployment.
+* **Latest Verification:** Verified and updated on June 22, 2026.
+  * **Dropdown Styling Fix:** Resolved a white-on-white text rendering issue for options inside `#insights-timeframe-select` dropdown in dark mode by styling `<option>` tags explicitly to use a dark background (`var(--bg-card-solid)`) and light text (`var(--text-primary)`).
+  * **Automated & Manual Tests:** Verified navigation tabs, changing prayer status (toast and card color updates), logging amols, checking circular progress chart responsiveness, and verifying service worker caching.
+  * **Favicon Integration:** Linked `icon.svg` as the favicon in `index.html` to resolve standard 404 console errors.
