@@ -235,6 +235,31 @@
           </div>
         </div>
 
+        <!-- Backup & Restore -->
+        <div class="settings-list-card" style="margin-top: 10px;">
+          <h3 class="heatmap-title">Backup & Restore</h3>
+          <p class="stat-footer" style="margin-top: 4px; margin-bottom: 12px;">Export your daily logs and custom amols to a file, or import it to sync across devices.</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button id="btn-export-data" class="btn-primary" style="justify-content: center; width: 100%;">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              Export Data (Save to File)
+            </button>
+            
+            <div style="position: relative; width: 100%;">
+              <button id="btn-import-trigger" class="btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                </svg>
+                Import Data (Select File)
+              </button>
+              <input type="file" id="import-file-input" accept=".json" style="display: none;">
+            </div>
+          </div>
+        </div>
+
         <!-- Reset Application Settings (Danger Zone) -->
         <div class="settings-list-card danger-zone">
           <h3 class="heatmap-title danger-zone-title">Danger Zone</h3>

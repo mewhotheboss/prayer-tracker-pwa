@@ -25,6 +25,7 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 ### ⚙️ Customization & Settings
 * **Custom Amols:** Create and track your own recurring daily worship tasks (e.g., *Charity*, *Read Quran 5 pages*, *Istighfar*).
 * **Manage Custom List:** Add or delete custom items directly from the Settings panel.
+* **Backup & Restore:** Export your logs and custom amol templates into a JSON file, or import it to sync across different devices or restore after an app reinstall.
 * **Data Privacy:** A danger zone option to clear all logs, records, and templates.
 
 ---

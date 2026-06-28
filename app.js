@@ -157,6 +157,21 @@ function initApp() {
     }
   });
 
+  // Backup & Restore: Export Data
+  document.getElementById('btn-export-data').addEventListener('click', () => {
+    exportData();
+  });
+
+  // Backup & Restore: Import Data trigger
+  document.getElementById('btn-import-trigger').addEventListener('click', () => {
+    document.getElementById('import-file-input').click();
+  });
+
+  // Backup & Restore: Import Data file selection
+  document.getElementById('import-file-input').addEventListener('change', (e) => {
+    handleImportFile(e);
+  });
+
   // Reset Data action with custom modal
   document.getElementById('btn-reset-data').addEventListener('click', () => {
     showConfirmModal(
@@ -854,6 +869,75 @@ function renderCustomAmolsManager() {
     `;
     container.appendChild(item);
   });
+}
+
+// Backup & Restore Functions
+function exportData() {
+  try {
+    const data = {
+      app: "prayer-tracker",
+      exportedAt: new Date().toISOString(),
+      amol_records: JSON.parse(localStorage.getItem('amol_records') || '{}'),
+      amol_custom_amols: JSON.parse(localStorage.getItem('amol_custom_amols') || '[]')
+    };
+    
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    const dateStr = getLocalDateString();
+    a.href = url;
+    a.download = `prayer_tracker_backup_${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showToast('Backup file downloaded! 📥');
+  } catch (err) {
+    console.error('Export failed', err);
+    showToast('Failed to export data. ❌');
+  }
+}
+
+function handleImportFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    try {
+      const imported = JSON.parse(evt.target.result);
+      
+      // Validation: Check if records exist
+      const recordsToImport = imported.amol_records || imported.iman_records;
+      if (!recordsToImport || typeof recordsToImport !== 'object') {
+        showToast('Invalid backup file structure. ❌');
+        return;
+      }
+      
+      const customAmolsToImport = imported.amol_custom_amols || imported.iman_custom_amols || [];
+      
+      showConfirmModal(
+        'Import Backup Data?',
+        'This will overwrite your existing records and custom amols with the data from the backup file. This cannot be undone.',
+        () => {
+          localStorage.setItem('amol_records', JSON.stringify(recordsToImport));
+          localStorage.setItem('amol_custom_amols', JSON.stringify(customAmolsToImport));
+          
+          showToast('Data imported successfully! Reloading...');
+          setTimeout(() => window.location.reload(), 1500);
+        }
+      );
+    } catch (err) {
+      console.error('Import failed', err);
+      showToast('Failed to parse backup file. ❌');
+    }
+    // Reset file input value
+    e.target.value = '';
+  };
+  reader.readAsText(file);
 }
 
 // 9. UTILITIES

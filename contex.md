@@ -45,6 +45,7 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 ### 4. Settings & Management
 * Manage and delete custom amols.
 * Clear all application data with double-confirmation dialog and storage reset.
+* Export and import daily tracker records and custom amols to JSON files for backup and migration.
 
 ---
 
@@ -79,6 +80,17 @@ All records are saved as JSON strings under two `localStorage` keys:
    ]
    ```
 
+### Backup JSON Schema
+Backup files are formatted as JSON objects containing:
+```json
+{
+  "app": "prayer-tracker",
+  "exportedAt": "2026-06-29T00:58:08.123Z",
+  "amol_records": { ... },
+  "amol_custom_amols": [ ... ]
+}
+```
+
 ### Legacy Key Migration
 On startup, the app checks for and migrates legacy data keys (`iman_records` and `iman_custom_amols`) to the new prefix (`amol_`).
 
@@ -91,7 +103,10 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
-* **Latest Verification:** Verified and updated on June 22, 2026.
+* **Latest Verification:** Verified and updated on June 29, 2026.
+  * **Backup & Restore Feature:** Added client-side export and import feature. Users can download a JSON file containing all logs and restore them on another device or after a reinstall.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v3` to ensure that browsers fetch the updated layout and scripts.
+* **Previous Verification:** Verified on June 22, 2026.
   * **Fixed Bottom Navigation & Toast Position:** Moved the bottom navigation bar (`nav.bottom-nav`) and toast notification (`#toast`) outside the `.app-container` directly into `<body>`. This resolves the issue where `backdrop-filter: blur(10px)` on the container overrode their fixed positioning, causing them to scroll with the page.
   * **Service Worker Version Bump:** Bumped service worker cache version to `prayer-tracker-v2` in `sw.js` to force browsers to update and load the newest layout changes.
   * **Dropdown Styling Fix:** Resolved a white-on-white text rendering issue for options inside `#insights-timeframe-select` dropdown in dark mode by styling `<option>` tags explicitly to use a dark background (`var(--bg-card-solid)`) and light text (`var(--text-primary)`).
