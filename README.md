@@ -8,10 +8,10 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 
 ### 📅 Daily Tracker
 * **Five Waqt Prayers:** Track Fajr, Dhuhr, Asr, Maghrib, and Isha. Manually select their status:
-  * 🟢 **On Time** (Completed on time)
+  * 🟢 **Timely** (Completed on time)
   * 🟡 **Late** (Completed but delayed)
   * 🔴 **Qaza** (Missed and completed later)
-  * ⚪ **Not Done** (Not completed yet)
+  * ⚪ **Pending** (Not completed yet)
 * **Dhaka-based Prayer Times:** View dynamic start and end times for each waqt based on the active date (e.g., Fajr 3:46 AM - 5:14 AM) calculated offline using `Adhan.js` library.
 * **Daily Amols:** Toggle default checklist items such as **Morning Zikr**, **Evening Zikr**, and **Tahajjud**.
 * **Date Navigation:** Jump back and forth to log entries for past/future dates, with a relative indicator (e.g., "Yesterday", "2 days ago") and a calendar date picker.

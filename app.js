@@ -16,8 +16,8 @@ const DEFAULT_AMOLS = [
 ];
 
 const STATUS_DETAILS = {
-  'NOT_DONE': { label: 'Not Done', color: '#6b7280' },
-  'ON_TIME': { label: 'On Time', color: '#10b981' },
+  'NOT_DONE': { label: 'Pending', color: '#6b7280' },
+  'ON_TIME': { label: 'Timely', color: '#10b981' },
   'LATE': { label: 'Late', color: '#f59e0b' },
   'QAZA': { label: 'Qaza', color: '#ef4444' }
 };
@@ -451,10 +451,10 @@ function renderTracker() {
       </div>
       <!-- Dropdown selector overlay -->
       <div class="status-dropdown" id="dropdown-${p.id}">
-        <div class="status-opt" data-val="ON_TIME" onclick="selectPrayerStatus('${p.id}', 'ON_TIME')">On Time</div>
+        <div class="status-opt" data-val="ON_TIME" onclick="selectPrayerStatus('${p.id}', 'ON_TIME')">Timely</div>
         <div class="status-opt" data-val="LATE" onclick="selectPrayerStatus('${p.id}', 'LATE')">Late</div>
         <div class="status-opt" data-val="QAZA" onclick="selectPrayerStatus('${p.id}', 'QAZA')">Qaza</div>
-        <div class="status-opt" data-val="NOT_DONE" onclick="selectPrayerStatus('${p.id}', 'NOT_DONE')">Not Done</div>
+        <div class="status-opt" data-val="NOT_DONE" onclick="selectPrayerStatus('${p.id}', 'NOT_DONE')">Pending</div>
       </div>
     `;
     prayersContainer.appendChild(card);
