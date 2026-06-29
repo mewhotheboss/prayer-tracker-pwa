@@ -287,6 +287,22 @@ main {
   color: var(--text-muted);
 }
 
+.prayer-time {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-gold-light);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.15);
+}
+
+.prayer-time svg {
+  opacity: 0.85;
+  color: var(--accent-gold-light);
+}
+
 /* State changes for card matching status */
 .prayer-card[data-status="ON_TIME"] {
   border-color: rgba(16, 185, 129, 0.25);

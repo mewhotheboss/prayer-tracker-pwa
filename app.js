@@ -341,6 +341,9 @@ function renderTracker() {
   });
 
   const dayRecord = records[currentDate];
+  
+  // Calculate Dhaka prayer times for the current date view
+  const times = getPrayerTimesForDate(currentDate);
 
   // RENDER PRAYERS
   const prayersContainer = document.getElementById('prayers-list-container');
@@ -350,6 +353,22 @@ function renderTracker() {
     const status = dayRecord.prayers[p.id] || 'NOT_DONE';
     const statusLabel = STATUS_DETAILS[status].label;
     
+    // Determine the time range for the current prayer
+    let timeRange = '';
+    if (times) {
+      if (p.id === 'fajr') {
+        timeRange = `${formatTime12(times.fajr)} - ${formatTime12(times.sunrise)}`;
+      } else if (p.id === 'dhuhr') {
+        timeRange = `${formatTime12(times.dhuhr)} - ${formatTime12(times.asr)}`;
+      } else if (p.id === 'asr') {
+        timeRange = `${formatTime12(times.asr)} - ${formatTime12(times.maghrib)}`;
+      } else if (p.id === 'maghrib') {
+        timeRange = `${formatTime12(times.maghrib)} - ${formatTime12(times.isha)}`;
+      } else if (p.id === 'isha') {
+        timeRange = `${formatTime12(times.isha)} - ${formatTime12(times.nextFajr)}`;
+      }
+    }
+    
     const card = document.createElement('div');
     card.className = 'prayer-card';
     card.setAttribute('data-status', status);
@@ -357,6 +376,13 @@ function renderTracker() {
     card.innerHTML = `
       <div class="prayer-info">
         <span class="prayer-name">${p.title}</span>
+        ${timeRange ? `
+        <span class="prayer-time">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          ${timeRange}
+        </span>` : ''}
         <span class="prayer-desc">${p.desc}</span>
       </div>
       <div class="status-pill" data-status="${status}" onclick="toggleStatusDropdown(event, '${p.id}')">
@@ -951,6 +977,49 @@ function showToast(message) {
   setTimeout(() => {
     toast.classList.remove('show');
   }, 2200);
+}
+
+// Helper: Calculate Dhaka prayer times for a given date string (YYYY-MM-DD)
+function getPrayerTimesForDate(dateStr) {
+  try {
+    const parts = dateStr.split('-');
+    const date = new Date(parts[0], parts[1] - 1, parts[2]);
+    
+    // Dhaka, Bangladesh coordinates
+    const coordinates = new adhan.Coordinates(23.8103, 90.4125);
+    const params = adhan.CalculationMethod.Karachi();
+    params.madhab = adhan.Madhab.Hanafi;
+    
+    const pt = new adhan.PrayerTimes(coordinates, date, params);
+    
+    // Calculate tomorrow's Fajr to compute Isha's end boundary
+    const tomorrow = new Date(date);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const ptTomorrow = new adhan.PrayerTimes(coordinates, tomorrow, params);
+    
+    return {
+      fajr: pt.fajr,
+      sunrise: pt.sunrise,
+      dhuhr: pt.dhuhr,
+      asr: pt.asr,
+      maghrib: pt.maghrib,
+      isha: pt.isha,
+      nextFajr: ptTomorrow.fajr
+    };
+  } catch (error) {
+    console.error('Error calculating prayer times:', error);
+    return null;
+  }
+}
+
+// Helper: Format date object to 12-hour time string
+function formatTime12(date) {
+  if (!date || isNaN(date.getTime())) return '';
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  });
 }
 
 // Reusable Custom Confirmation Modal function
