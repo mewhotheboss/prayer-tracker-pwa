@@ -24,7 +24,7 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 * **Spiritual Heatmap:** An interactive calendar consistency grid mapping your daily spiritual scores (0 to 5) for the selected month. Click on any cell to open and edit the tracker checklist for that day.
 
 ### ⚙️ Customization & Settings
-* **App Themes:** Instantly switch between **Light Mode**, **Dark Mode**, and **System Default** settings (saved offline in local storage and synced live to your OS preference).
+* **App Themes:** Instantly switch between **Light Mode**, **Dark Mode**, and **System Default** settings (saved offline in local storage and synced live to your OS preference). Fully optimized for high readability and premium color contrast across all UI components, including dashboard stats, promo banners, and the spiritual heatmap calendar grid.
 * **Custom Amols:** Create and track your own recurring daily worship tasks (e.g., *Charity*, *Read Quran 5 pages*, *Istighfar*).
 * **Manage Custom List:** Add or delete custom items directly from the Settings panel.
 * **Backup & Restore:** Export your logs and custom amol templates into a JSON file, or import it to sync across different devices or restore after an app reinstall.

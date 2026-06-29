@@ -110,7 +110,9 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
-* **Latest Verification (June 29, 2026):**
+* **Latest Verification (June 30, 2026):**
+  * **Spiritual Heatmap Light Theme Fix:** Added explicit light-theme overrides for all active heatmap cell score values (1 to 5) in `styles.css`. This resolved a bug where the general `.light-theme .heatmap-cell` rule overrode score-based background colors, causing heatmap cells to appear washed-out/white in light mode. Score 5 cells (completed day) are now rendered in solid green with white text (`#ffffff`) for high contrast, and scores 1-4 render in graduated shades of green.
+* **Previous Verification (June 29, 2026):**
   * **Theme Selector Feature:** Integrated Light, Dark, and System Default themes. Persistent using `localStorage` (`app_theme`), with an inline script block in `<head>` preventing theme flashes on load.
   * **Install Banner Style Update:** Corrected the visual contrast of the "Add to Home Screen" promo banner in Light theme. Implemented a light gradient background with dark text for high legibility, and styled the CTA install button with a premium teal accent.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v6` and registered `'./styles.css?v=6'` to resolve caching issues.
