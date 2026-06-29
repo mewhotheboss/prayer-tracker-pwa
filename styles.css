@@ -43,6 +43,55 @@
   --font-family: 'Outfit', sans-serif;
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.15s ease;
+
+  /* Theme-specific custom variables */
+  --bg-app-container: rgba(7, 10, 19, 0.4);
+  --bg-header: rgba(11, 15, 25, 0.8);
+  --bg-dropdown-hover: rgba(255, 255, 255, 0.05);
+  --bg-stats: rgba(255, 255, 255, 0.05);
+}
+
+/* Light Theme Variables */
+.light-theme {
+  --bg-dark: #f0f4f8;
+  --bg-body: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-card-solid: #ffffff;
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-glow: rgba(13, 92, 77, 0.15);
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  /* Status Colors in Light Mode */
+  --color-ontime-bg: rgba(16, 185, 129, 0.15);
+  --color-late-bg: rgba(245, 158, 11, 0.15);
+  --color-qaza-bg: rgba(239, 68, 68, 0.15);
+  --color-notdone-bg: rgba(100, 116, 139, 0.15);
+  
+  /* Accents */
+  --accent-teal: #0d5c4d;
+  --accent-teal-bright: #0f766e;
+  --accent-gold: #c2410c;
+  --accent-gold-light: #d97706;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  
+  --bg-app-container: rgba(255, 255, 255, 0.4);
+  --bg-header: rgba(248, 250, 252, 0.85);
+  --bg-dropdown-hover: rgba(15, 23, 42, 0.05);
+  --bg-stats: rgba(15, 23, 42, 0.04);
+}
+
+.light-theme body {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(13, 92, 77, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 1) 100%);
 }
 
 * {
@@ -74,7 +123,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: rgba(7, 10, 19, 0.4);
+  background-color: var(--bg-app-container);
   backdrop-filter: blur(10px);
   border-left: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
@@ -91,7 +140,7 @@ header {
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  background: rgba(11, 15, 25, 0.8);
+  background: var(--bg-header);
   backdrop-filter: blur(12px);
   z-index: 100;
 }
@@ -124,7 +173,7 @@ header {
 .header-stats {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-stats);
   border: 1px solid var(--border-color);
   padding: 6px 14px;
   border-radius: 99px;
@@ -422,7 +471,7 @@ main {
 }
 
 .status-opt:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-dropdown-hover);
   color: var(--text-primary);
 }
 
@@ -933,7 +982,7 @@ nav.bottom-nav {
   left: 0;
   right: 0;
   height: 70px;
-  background: rgba(11, 15, 25, 0.92);
+  background: var(--bg-header);
   border-top: 1px solid var(--border-color);
   border-left: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
@@ -1104,7 +1153,7 @@ nav.bottom-nav {
 }
 
 .modal-card {
-  background: #161f30;
+  background: var(--bg-card-solid);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 24px;
@@ -1175,3 +1224,115 @@ nav.bottom-nav {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Light Theme overrides for specific components */
+.light-theme .heatmap-cell {
+  background: rgba(15, 23, 42, 0.02);
+  border-color: rgba(15, 23, 42, 0.03);
+}
+.light-theme .heatmap-cell.active-day {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+.light-theme .heatmap-cell[data-score="0"] {
+  background: rgba(15, 23, 42, 0.03);
+}
+.light-theme .weekly-grid-cell-container {
+  background: rgba(15, 23, 42, 0.04);
+}
+.light-theme .weekly-cell-dot[data-status="NOT_DONE"] {
+  background: rgba(15, 23, 42, 0.05);
+}
+.light-theme .btn-secondary {
+  background: rgba(15, 23, 42, 0.04);
+}
+.light-theme .btn-secondary:hover {
+  background: rgba(15, 23, 42, 0.08);
+}
+.light-theme select option,
+.light-theme .custom-input option {
+  background-color: #ffffff;
+  color: var(--text-primary);
+}
+
+/* Theme Selector Grid & Button Styles */
+.theme-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.theme-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.theme-btn svg {
+  color: var(--text-secondary);
+  transition: var(--transition-smooth);
+}
+
+.theme-btn span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  transition: var(--transition-smooth);
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.theme-btn:hover svg {
+  color: var(--text-primary);
+}
+
+.theme-btn.active {
+  background: var(--color-ontime-bg);
+  border-color: var(--color-ontime);
+  color: var(--color-ontime);
+  box-shadow: 0 0 12px var(--color-ontime-glow);
+}
+
+.theme-btn.active svg {
+  color: var(--color-ontime);
+  transform: scale(1.1);
+}
+
+.light-theme .theme-btn {
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.light-theme .theme-btn:hover {
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--text-primary);
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+/* Install Promo Light Theme overrides */
+.light-theme .install-promo {
+  background: linear-gradient(135deg, rgba(13, 92, 77, 0.06) 0%, rgba(13, 92, 77, 0.12) 100%);
+  border-color: rgba(13, 92, 77, 0.15);
+}
+
+.light-theme .btn-install {
+  background: var(--accent-teal);
+  color: white;
+}
+
+.light-theme .btn-install:hover {
+  background: var(--accent-teal-bright);
+}
+

@@ -27,6 +27,7 @@ let currentDate = getLocalDateString();
 let records = {};
 let customAmols = [];
 let deferredPrompt = null;
+let currentTheme = 'system';
 
 // 3. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
@@ -91,6 +92,50 @@ function loadData() {
       console.error('Error parsing custom amols', e);
       customAmols = [];
     }
+  }
+
+  // Load theme preference
+  const savedTheme = localStorage.getItem('app_theme');
+  if (savedTheme) {
+    currentTheme = savedTheme;
+  }
+  // Apply initially (without toast notification)
+  applyTheme(currentTheme, false);
+}
+
+// Theme management functions
+function applyTheme(theme, showFeedback = true) {
+  currentTheme = theme;
+  localStorage.setItem('app_theme', theme);
+
+  let isLight = false;
+  if (theme === 'light') {
+    isLight = true;
+  } else if (theme === 'system') {
+    isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  }
+
+  if (isLight) {
+    document.documentElement.classList.add('light-theme');
+  } else {
+    document.documentElement.classList.remove('light-theme');
+  }
+
+  // Update theme buttons UI if they are present in DOM
+  const buttons = document.querySelectorAll('.theme-btn');
+  if (buttons.length > 0) {
+    buttons.forEach(btn => {
+      if (btn.getAttribute('data-theme') === theme) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  if (showFeedback) {
+    const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1);
+    showToast(`${theme === 'system' ? 'System default' : capitalize(theme) + ' theme'} applied!`);
   }
 }
 
@@ -218,6 +263,21 @@ function initApp() {
   window.addEventListener('online', updateNetworkStatus);
   window.addEventListener('offline', updateNetworkStatus);
   updateNetworkStatus();
+
+  // Theme selector buttons
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedTheme = btn.getAttribute('data-theme');
+      applyTheme(selectedTheme, true);
+    });
+  });
+
+  // Watch for system theme changes dynamically
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (currentTheme === 'system') {
+      applyTheme('system', false);
+    }
+  });
 
   // Populate dynamic month list on Insights and register change listener
   populateTimeframeSelector();
