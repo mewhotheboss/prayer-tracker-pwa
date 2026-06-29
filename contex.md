@@ -7,9 +7,10 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 
 ## Technology Stack & Design System
 * **Core:** HTML5, Vanilla JavaScript.
-* **Styling:** Premium Vanilla CSS with dark mode aesthetics (glassmorphic elements, emerald green accents `#0D5C4D` / `#10b981`, gold gradients, and responsive layouts).
+* **Styling:** Premium Vanilla CSS with support for multiple theme modes (Light, Dark, and System Default) featuring glassmorphic elements, emerald green accents, gold gradients, and responsive layouts.
 * **PWA Capability:** Custom Service Worker (`sw.js`) utilizing a stale-while-revalidate caching strategy to allow offline operation, combined with a standard `manifest.json`.
 * **Storage:** Client-side HTML5 `localStorage`.
+* **Theme Prevention of Flash (FOUC):** Blocker inline script inside `<head>` of `index.html` to instantly apply appropriate theme class.
 
 ---
 
@@ -45,9 +46,11 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 * **Spiritual Heatmap:** Interactive calendar grid mapping consistency score (0 to 5) for the active month. Clicking a day loads its checklist.
 
 ### 4. Settings & Management
+* **App Theme Switcher:** Set preference to Light, Dark, or System Default.
 * Manage and delete custom amols.
 * Clear all application data with double-confirmation dialog and storage reset.
 * Export and import daily tracker records and custom amols to JSON files for backup and migration.
+
 
 ---
 
@@ -81,6 +84,8 @@ All records are saved as JSON strings under two `localStorage` keys:
      { "id": "custom_1718912345678", "title": "Read Quran 5 pages" }
    ]
    ```
+3. `app_theme`: Stores the selected theme mode preference string (`"light"`, `"dark"`, or `"system"`).
+
 
 ### Backup JSON Schema
 Backup files are formatted as JSON objects containing:
@@ -106,6 +111,10 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
 * **Latest Verification (June 29, 2026):**
+  * **Theme Selector Feature:** Integrated Light, Dark, and System Default themes. Persistent using `localStorage` (`app_theme`), with an inline script block in `<head>` preventing theme flashes on load.
+  * **Install Banner Style Update:** Corrected the visual contrast of the "Add to Home Screen" promo banner in Light theme. Implemented a light gradient background with dark text for high legibility, and styled the CTA install button with a premium teal accent.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v6` and registered `'./styles.css?v=6'` to resolve caching issues.
+* **Previous Verification (June 29, 2026):**
   * **Dhaka-based Prayer Times:** Integrated client-side prayer times calculation and display inside the 5 Waqt prayer cards. Displays dynamic times (e.g. Fajr 3:46 AM - 5:14 AM) using the offline-first `Adhan.js` library configured with Karachi/Hanafi calculation standards.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v4` and added `adhan.js` to pre-cached static assets.
 * **Previous Verification (June 29, 2026):**

@@ -24,6 +24,7 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 * **Spiritual Heatmap:** An interactive calendar consistency grid mapping your daily spiritual scores (0 to 5) for the selected month. Click on any cell to open and edit the tracker checklist for that day.
 
 ### ⚙️ Customization & Settings
+* **App Themes:** Instantly switch between **Light Mode**, **Dark Mode**, and **System Default** settings (saved offline in local storage and synced live to your OS preference).
 * **Custom Amols:** Create and track your own recurring daily worship tasks (e.g., *Charity*, *Read Quran 5 pages*, *Istighfar*).
 * **Manage Custom List:** Add or delete custom items directly from the Settings panel.
 * **Backup & Restore:** Export your logs and custom amol templates into a JSON file, or import it to sync across different devices or restore after an app reinstall.
@@ -33,9 +34,9 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 
 ## 🛠️ Technology Stack & Architecture
 * **Frontend:** Standard Semantic HTML5, Vanilla JavaScript.
-* **Styling:** Premium Vanilla CSS featuring a sleek dark mode theme, glassmorphic card containers, HSL tailored emerald (`#0D5C4D`) and gold color systems, and modern custom typography.
+* **Styling:** Premium Vanilla CSS featuring responsive Light, Dark, and System Default theme modes, glassmorphic card containers, HSL tailored emerald (`#0D5C4D`) and gold color systems, and modern custom typography.
 * **PWA & Offline Capability:** Custom Service Worker (`sw.js`) implementing a **stale-while-revalidate** caching strategy. Assets are cached locally, allowing the app to run completely offline.
-* **Data Storage:** All user entries are synchronized in client-side HTML5 `localStorage` under `amol_records` and `amol_custom_amols`.
+* **Data Storage:** All user entries are synchronized in client-side HTML5 `localStorage` under `amol_records`, `amol_custom_amols`, and `app_theme` preferences.
 
 ---
 
