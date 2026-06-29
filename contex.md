@@ -14,13 +14,13 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 ---
 
 ## File Structure
-* [index.html](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/index.html): UI shell with dynamic views (Tracker, Insights, Settings), headers showing streaks, custom modal overlays, and custom favicon.
-* [styles.css](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/styles.css): Premium design system implementation, active states, animations, and custom scrollbars.
-* [adhan.js](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/adhan.js): Bundled UMD version of `Adhan.js` library for offline astronomical calculations.
-* [app.js](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/app.js): App state controller, date navigation helper, streak & insights calculations, and local storage syncer.
-* [sw.js](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/sw.js): PWA service worker caching structural assets.
-* [manifest.json](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/manifest.json): Configuration file for mobile installable standalone options.
-* [contex.md](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/contex.md): Project specification and current state documentation.
+* [index.html](./index.html): UI shell with dynamic views (Tracker, Insights, Settings), headers showing streaks, custom modal overlays, and custom favicon.
+* [styles.css](./styles.css): Premium design system implementation, active states, animations, and custom scrollbars.
+* [adhan.js](./adhan.js): Bundled UMD version of `Adhan.js` library for offline astronomical calculations.
+* [app.js](./app.js): App state controller, date navigation helper, streak & insights calculations, and local storage syncer.
+* [sw.js](./sw.js): PWA service worker caching structural assets.
+* [manifest.json](./manifest.json): Configuration file for mobile installable standalone options.
+* [contex.md](./contex.md): Project specification and current state documentation.
 
 ---
 
