@@ -111,6 +111,9 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
 * **Latest Verification (June 30, 2026):**
+  * **Two-Letter Weekday Abbreviations:** Changed weekday names from single-character representation (S, M, T, W...) to clearer two-character representation (Su, Mo, Tu, We, Th, Fr, Sa) in both the Weekly Tracker and the Spiritual Heatmap.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v7` and cache-busted `app.js` and `styles.css` with `?v=7` to force clients to update.
+* **Previous Verification (June 30, 2026):**
   * **Spiritual Heatmap Light Theme Fix:** Added explicit light-theme overrides for all active heatmap cell score values (1 to 5) in `styles.css`. This resolved a bug where the general `.light-theme .heatmap-cell` rule overrode score-based background colors, causing heatmap cells to appear washed-out/white in light mode. Score 5 cells (completed day) are now rendered in solid green with white text (`#ffffff`) for high contrast, and scores 1-4 render in graduated shades of green.
 * **Previous Verification (June 29, 2026):**
   * **Theme Selector Feature:** Integrated Light, Dark, and System Default themes. Persistent using `localStorage` (`app_theme`), with an inline script block in `<head>` preventing theme flashes on load.

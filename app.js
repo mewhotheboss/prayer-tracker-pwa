@@ -671,7 +671,8 @@ function renderInsights() {
       const rec = records[dateStr];
       const parts = dateStr.split('-');
       const dObj = new Date(parts[0], parts[1] - 1, parts[2]);
-      const weekdayName = dObj.toLocaleDateString('en-US', { weekday: 'narrow' }); // M, T, W, T...
+      const weekdayShort = dObj.toLocaleDateString('en-US', { weekday: 'short' }); // Sun, Mon, Tue...
+      const weekdayName = weekdayShort.slice(0, 2);
       
       const col = document.createElement('div');
       col.className = 'weekly-day-col';
@@ -726,7 +727,7 @@ function renderMonthlyHeatmap(year, monthIndex) {
   if (labelEl) labelEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
 
   // Print weekdays labels
-  const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
   weekdays.forEach(day => {
     const wCell = document.createElement('div');
     wCell.className = 'heatmap-cell-weekday';
