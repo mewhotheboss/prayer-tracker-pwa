@@ -16,6 +16,7 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 ## File Structure
 * [index.html](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/index.html): UI shell with dynamic views (Tracker, Insights, Settings), headers showing streaks, custom modal overlays, and custom favicon.
 * [styles.css](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/styles.css): Premium design system implementation, active states, animations, and custom scrollbars.
+* [adhan.js](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/adhan.js): Bundled UMD version of `Adhan.js` library for offline astronomical calculations.
 * [app.js](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/app.js): App state controller, date navigation helper, streak & insights calculations, and local storage syncer.
 * [sw.js](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/sw.js): PWA service worker caching structural assets.
 * [manifest.json](file:///c:/Users/rafim/Documents/prayer-tracker-pwa/manifest.json): Configuration file for mobile installable standalone options.
@@ -27,6 +28,7 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 
 ### 1. Daily Tracker
 * **Five Waqt Prayers:** fajr, dhuhr, asr, maghrib, and isha. Each prayer card contains status selector pill toggles representing `ON_TIME`, `LATE`, `QAZA`, or `NOT_DONE`.
+* **Dhaka-based Prayer Times:** Displays dynamic start and end times for each waqt based on the active date using the offline-first `Adhan.js` library (configured with Karachi/Hanafi calculation standards).
 * **Default Amols:** morning_zikr, evening_zikr, and tahajjud. Tracking via simple checkboxes (checked/unchecked).
 * **Date Navigation:** Backward/forward date skipping with relative descriptors ("Today", "Yesterday", "2 days ago") and a hidden native calendar picker.
 
@@ -103,10 +105,13 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
-* **Latest Verification:** Verified and updated on June 29, 2026.
+* **Latest Verification (June 29, 2026):**
+  * **Dhaka-based Prayer Times:** Integrated client-side prayer times calculation and display inside the 5 Waqt prayer cards. Displays dynamic times (e.g. Fajr 3:46 AM - 5:14 AM) using the offline-first `Adhan.js` library configured with Karachi/Hanafi calculation standards.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v4` and added `adhan.js` to pre-cached static assets.
+* **Previous Verification (June 29, 2026):**
   * **Backup & Restore Feature:** Added client-side export and import feature. Users can download a JSON file containing all logs and restore them on another device or after a reinstall.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v3` to ensure that browsers fetch the updated layout and scripts.
-* **Previous Verification:** Verified on June 22, 2026.
+* **Previous Verification (June 22, 2026):**
   * **Fixed Bottom Navigation & Toast Position:** Moved the bottom navigation bar (`nav.bottom-nav`) and toast notification (`#toast`) outside the `.app-container` directly into `<body>`. This resolves the issue where `backdrop-filter: blur(10px)` on the container overrode their fixed positioning, causing them to scroll with the page.
   * **Service Worker Version Bump:** Bumped service worker cache version to `prayer-tracker-v2` in `sw.js` to force browsers to update and load the newest layout changes.
   * **Dropdown Styling Fix:** Resolved a white-on-white text rendering issue for options inside `#insights-timeframe-select` dropdown in dark mode by styling `<option>` tags explicitly to use a dark background (`var(--bg-card-solid)`) and light text (`var(--text-primary)`).
