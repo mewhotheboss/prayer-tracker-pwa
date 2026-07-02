@@ -525,6 +525,18 @@ main {
   color: #ef4444;
 }
 
+.forbidden-note {
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 1px;
+  text-align: center;
+}
+
+.light-theme .forbidden-note {
+  color: var(--text-secondary);
+}
+
 /* State changes for card matching status */
 .prayer-card[data-status="ON_TIME"] {
   border-color: rgba(16, 185, 129, 0.25);

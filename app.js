@@ -475,9 +475,10 @@ function renderTracker() {
             <span class="forbidden-name">Pre-Dhuhr</span>
             <span class="forbidden-value">${forbiddenDhuhrRange}</span>
           </div>
-          <div class="forbidden-item" title="No prayer allowed for 15 minutes before Maghrib">
+          <div class="forbidden-item" title="No prayer allowed for 15 minutes before Maghrib (Except today's Asr)">
             <span class="forbidden-name">Pre-Maghrib</span>
             <span class="forbidden-value">${forbiddenMaghribRange}</span>
+            <span class="forbidden-note">*Except Today's Asr</span>
           </div>
         </div>
       </div>
