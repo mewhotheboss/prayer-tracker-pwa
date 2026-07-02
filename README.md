@@ -13,6 +13,8 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
   * 🔴 **Qaza** (Missed and completed later)
   * ⚪ **Pending** (Not completed yet)
 * **Dhaka-based Prayer Times:** View dynamic start and end times for each waqt based on the active date (e.g., Fajr 3:46 AM - 5:14 AM) calculated offline using `Adhan.js` library.
+* **Sunrise & Sunset Times:** Displays dynamically calculated Sunrise and Sunset times for the active date.
+* **Forbidden Prayer Times (নিষিদ্ধ সময়):** Computes and renders three specific daily forbidden intervals (Sunrise period: 15 mins after Sunrise; Zawal period: 7 mins before Dhuhr/Jum'a, ending 1 min before; Sunset period: 15 mins before Maghrib, ending 1 min before, with a footnote highlighting the exemption allowing the current day's Asr prayer).
 * **Daily Amols:** Toggle default checklist items such as **Morning Zikr**, **Evening Zikr**, and **Tahajjud**.
 * **Date Navigation:** Jump back and forth to log entries for past/future dates, with a relative indicator (e.g., "Yesterday", "2 days ago") and a calendar date picker.
 

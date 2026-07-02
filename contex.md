@@ -30,6 +30,8 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 ### 1. Daily Tracker
 * **Five Waqt Prayers:** fajr, dhuhr (displays as **Jum'a** on Fridays), asr, maghrib, and isha. Each prayer card contains status selector pill toggles representing `ON_TIME`, `LATE`, `QAZA`, or `NOT_DONE`.
 * **Dhaka-based Prayer Times:** Displays dynamic start and end times for each waqt based on the active date using the offline-first `Adhan.js` library (configured with Karachi/Hanafi calculation standards).
+* **Sunrise & Sunset Display:** Displays dynamic, offline-calculated Sunrise and Sunset (Maghrib start) times on the daily tracker view.
+* **Forbidden Prayer Times:** Dynamically calculates and renders the three daily forbidden prayer intervals (Sunrise: 15 mins from Sunrise; Zawal: 7 mins before Dhuhr/Jum'a, ending 1 min before; Sunset: 15 mins before Maghrib, ending 1 min before, with a footnote highlighting the exemption allowing today's Asr prayer to be performed).
 * **Default Amols:** morning_zikr, evening_zikr, and tahajjud. Tracking via simple checkboxes (checked/unchecked).
 * **Date Navigation:** Backward/forward date skipping with relative descriptors ("Today", "Yesterday", "2 days ago") and a hidden native calendar picker.
 
