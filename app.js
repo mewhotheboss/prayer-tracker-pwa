@@ -405,6 +405,47 @@ function renderTracker() {
   // Calculate Dhaka prayer times for the current date view
   const times = getPrayerTimesForDate(currentDate);
 
+  // Render Sunrise and Sunset widget
+  const sunTimesContainer = document.getElementById('sun-times-container');
+  if (times && sunTimesContainer) {
+    sunTimesContainer.style.display = 'flex';
+    sunTimesContainer.innerHTML = `
+      <div class="sun-time-item sunrise" title="Fajr ends at Sunrise">
+        <div class="sun-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 18a6 6 0 0 0-6-6v6h12v-6a6 6 0 0 0-6-6z" fill="currentColor" fill-opacity="0.1" />
+            <path d="M4 18h16" />
+            <path d="M12 2v4" />
+            <path d="M4.93 6.93l2.83 2.83" />
+            <path d="M19.07 6.93l-2.83 2.83" />
+          </svg>
+        </div>
+        <div class="sun-info">
+          <span class="sun-label">Sunrise</span>
+          <span class="sun-time-value" id="sunrise-time">${formatTime12(times.sunrise)}</span>
+        </div>
+      </div>
+      <div class="sun-divider"></div>
+      <div class="sun-time-item sunset" title="Maghrib starts at Sunset">
+        <div class="sun-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 18a6 6 0 0 0-6-6v6h12v-6a6 6 0 0 0-6-6z" fill="currentColor" fill-opacity="0.1" />
+            <path d="M4 18h16" />
+            <path d="M12 18v4" />
+            <path d="M4.93 15.07l2.83-2.83" />
+            <path d="M19.07 15.07l-2.83-2.83" />
+          </svg>
+        </div>
+        <div class="sun-info">
+          <span class="sun-label">Sunset</span>
+          <span class="sun-time-value" id="sunset-time">${formatTime12(times.maghrib)}</span>
+        </div>
+      </div>
+    `;
+  } else if (sunTimesContainer) {
+    sunTimesContainer.style.display = 'none';
+  }
+
   // RENDER PRAYERS
   const prayersContainer = document.getElementById('prayers-list-container');
   prayersContainer.innerHTML = '';

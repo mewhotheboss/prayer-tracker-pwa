@@ -353,6 +353,99 @@ main {
   color: var(--accent-gold-light);
 }
 
+/* Sunrise & Sunset Card Styling */
+.sun-times-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.sun-times-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 35%, #ec4899 70%, #8b5cf6 100%);
+  opacity: 0.7;
+}
+
+.sun-time-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+
+.sun-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.sunrise .sun-icon {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--accent-gold-light);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+}
+
+.sunset .sun-icon {
+  background: rgba(236, 72, 153, 0.12);
+  color: #f472b6;
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.15);
+}
+
+/* Light Theme overrides for icons */
+.light-theme .sunrise .sun-icon {
+  background: rgba(245, 158, 11, 0.15);
+  color: #d97706;
+}
+.light-theme .sunset .sun-icon {
+  background: rgba(219, 39, 119, 0.12);
+  color: #db2777;
+}
+
+.sun-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sun-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.sun-time-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 1px;
+}
+
+.sun-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border-color);
+  margin: 0 10px;
+}
+
 /* State changes for card matching status */
 .prayer-card[data-status="ON_TIME"] {
   border-color: rgba(16, 185, 129, 0.25);

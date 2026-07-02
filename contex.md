@@ -110,7 +110,10 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
-* **Latest Verification (June 30, 2026):**
+* **Latest Verification (July 2, 2026):**
+  * **Sunrise & Sunset Times Feature:** Integrated a dual-column Sunrise and Sunset dynamic time display widget on the main Daily Tracker screen. The times are computed locally using offline calculations provided by `Adhan.js` based on coordinates. Added corresponding SVG icons, beautiful custom gradients, and light/dark theme color tweaks.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v11` and cache-busted `app.js` and `styles.css` with `?v=11` to ensure clients download the new layout and styling features instantly.
+* **Previous Verification (June 30, 2026):**
   * **Professional Vocabulary Update:** Updated the user-facing status labels from "On Time" to "Timely" and "Not Done" to "Pending" in the main tracker checklist, dropdown options, analytics summaries, legend cards, and README.md.
   * **Two-Letter Weekday Abbreviations:** Changed weekday names from single-character representation (S, M, T, W...) to clearer two-character representation (Su, Mo, Tu, We, Th, Fr, Sa) in both the Weekly Tracker and the Spiritual Heatmap.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v8` and cache-busted `app.js` and `styles.css` with `?v=8` to force clients to update.
