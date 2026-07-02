@@ -7,7 +7,7 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 ## ✨ Key Features
 
 ### 📅 Daily Tracker
-* **Five Waqt Prayers:** Track Fajr, Dhuhr, Asr, Maghrib, and Isha. Manually select their status:
+* **Five Waqt Prayers:** Track Fajr, Dhuhr (displays as **Jum'a** on Fridays), Asr, Maghrib, and Isha. Manually select their status:
   * 🟢 **Timely** (Completed on time)
   * 🟡 **Late** (Completed but delayed)
   * 🔴 **Qaza** (Missed and completed later)

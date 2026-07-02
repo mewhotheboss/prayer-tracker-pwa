@@ -433,9 +433,20 @@ function renderTracker() {
     card.className = 'prayer-card';
     card.setAttribute('data-status', status);
     
+    let displayTitle = p.title;
+    let displayDesc = p.desc;
+    if (p.id === 'dhuhr') {
+      const dateParts = currentDate.split('-');
+      const dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+      if (dateObj.getDay() === 5) {
+        displayTitle = "Jum'a";
+        displayDesc = "Friday Congregational Prayer • 4 Sunnah, 2 Fard, 2 Sunnah";
+      }
+    }
+    
     card.innerHTML = `
       <div class="prayer-info">
-        <span class="prayer-name">${p.title}</span>
+        <span class="prayer-name">${displayTitle}</span>
         ${timeRange ? `
         <span class="prayer-time">
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -443,7 +454,7 @@ function renderTracker() {
           </svg>
           ${timeRange}
         </span>` : ''}
-        <span class="prayer-desc">${p.desc}</span>
+        <span class="prayer-desc">${displayDesc}</span>
       </div>
       <div class="status-pill" data-status="${status}" onclick="toggleStatusDropdown(event, '${p.id}')">
         <span class="status-dot"></span>
@@ -686,7 +697,13 @@ function renderInsights() {
         const cellDot = document.createElement('div');
         cellDot.className = 'weekly-cell-dot';
         cellDot.setAttribute('data-status', status);
-        cellDot.title = `${p.title}: ${STATUS_DETAILS[status].label}`;
+        
+        let displayTitle = p.title;
+        if (p.id === 'dhuhr' && dObj.getDay() === 5) {
+          displayTitle = "Jum'a";
+        }
+        
+        cellDot.title = `${displayTitle}: ${STATUS_DETAILS[status].label}`;
         cellsWrapper.appendChild(cellDot);
       });
       

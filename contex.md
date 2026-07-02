@@ -28,7 +28,7 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 ## Key Features
 
 ### 1. Daily Tracker
-* **Five Waqt Prayers:** fajr, dhuhr, asr, maghrib, and isha. Each prayer card contains status selector pill toggles representing `ON_TIME`, `LATE`, `QAZA`, or `NOT_DONE`.
+* **Five Waqt Prayers:** fajr, dhuhr (displays as **Jum'a** on Fridays), asr, maghrib, and isha. Each prayer card contains status selector pill toggles representing `ON_TIME`, `LATE`, `QAZA`, or `NOT_DONE`.
 * **Dhaka-based Prayer Times:** Displays dynamic start and end times for each waqt based on the active date using the offline-first `Adhan.js` library (configured with Karachi/Hanafi calculation standards).
 * **Default Amols:** morning_zikr, evening_zikr, and tahajjud. Tracking via simple checkboxes (checked/unchecked).
 * **Date Navigation:** Backward/forward date skipping with relative descriptors ("Today", "Yesterday", "2 days ago") and a hidden native calendar picker.
