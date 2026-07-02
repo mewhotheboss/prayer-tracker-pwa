@@ -111,6 +111,9 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
 * **Latest Verification (July 2, 2026):**
+  * **Forbidden Prayer Times Feature:** Added dynamic calculation and display of the 3 forbidden daily prayer times (Zawal/Pre-Dhuhr, Sunrise, and Pre-Maghrib) underneath the Sunrise/Sunset card in the main tracker checklist.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v12` and cache-busted `app.js` and `styles.css` with `?v=12` to ensure immediate offline updates on client browsers.
+* **Previous Verification (July 2, 2026):**
   * **Sunrise & Sunset Times Feature:** Integrated a dual-column Sunrise and Sunset dynamic time display widget on the main Daily Tracker screen. The times are computed locally using offline calculations provided by `Adhan.js` based on coordinates. Added corresponding SVG icons, beautiful custom gradients, and light/dark theme color tweaks.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v11` and cache-busted `app.js` and `styles.css` with `?v=11` to ensure clients download the new layout and styling features instantly.
 * **Previous Verification (June 30, 2026):**

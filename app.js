@@ -408,37 +408,77 @@ function renderTracker() {
   // Render Sunrise and Sunset widget
   const sunTimesContainer = document.getElementById('sun-times-container');
   if (times && sunTimesContainer) {
+    // Calculate forbidden ranges
+    const forbiddenSunriseStart = times.sunrise;
+    const forbiddenSunriseEnd = new Date(times.sunrise.getTime() + 15 * 60 * 1000);
+    const forbiddenSunriseRange = `${formatTime12(forbiddenSunriseStart)} - ${formatTime12(forbiddenSunriseEnd)}`;
+
+    const forbiddenDhuhrStart = new Date(times.dhuhr.getTime() - 7 * 60 * 1000);
+    const forbiddenDhuhrEnd = new Date(times.dhuhr.getTime() - 1 * 60 * 1000);
+    const forbiddenDhuhrRange = `${formatTime12(forbiddenDhuhrStart)} - ${formatTime12(forbiddenDhuhrEnd)}`;
+
+    const forbiddenMaghribStart = new Date(times.maghrib.getTime() - 15 * 60 * 1000);
+    const forbiddenMaghribEnd = new Date(times.maghrib.getTime() - 1 * 60 * 1000);
+    const forbiddenMaghribRange = `${formatTime12(forbiddenMaghribStart)} - ${formatTime12(forbiddenMaghribEnd)}`;
+
     sunTimesContainer.style.display = 'flex';
     sunTimesContainer.innerHTML = `
-      <div class="sun-time-item sunrise" title="Fajr ends at Sunrise">
-        <div class="sun-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 18a6 6 0 0 0-6-6v6h12v-6a6 6 0 0 0-6-6z" fill="currentColor" fill-opacity="0.1" />
-            <path d="M4 18h16" />
-            <path d="M12 2v4" />
-            <path d="M4.93 6.93l2.83 2.83" />
-            <path d="M19.07 6.93l-2.83 2.83" />
-          </svg>
+      <div class="sun-times-row">
+        <div class="sun-time-item sunrise" title="Fajr ends at Sunrise">
+          <div class="sun-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 18a6 6 0 0 0-6-6v6h12v-6a6 6 0 0 0-6-6z" fill="currentColor" fill-opacity="0.1" />
+              <path d="M4 18h16" />
+              <path d="M12 2v4" />
+              <path d="M4.93 6.93l2.83 2.83" />
+              <path d="M19.07 6.93l-2.83 2.83" />
+            </svg>
+          </div>
+          <div class="sun-info">
+            <span class="sun-label">Sunrise</span>
+            <span class="sun-time-value" id="sunrise-time">${formatTime12(times.sunrise)}</span>
+          </div>
         </div>
-        <div class="sun-info">
-          <span class="sun-label">Sunrise</span>
-          <span class="sun-time-value" id="sunrise-time">${formatTime12(times.sunrise)}</span>
+        <div class="sun-divider"></div>
+        <div class="sun-time-item sunset" title="Maghrib starts at Sunset">
+          <div class="sun-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 18a6 6 0 0 0-6-6v6h12v-6a6 6 0 0 0-6-6z" fill="currentColor" fill-opacity="0.1" />
+              <path d="M4 18h16" />
+              <path d="M12 18v4" />
+              <path d="M4.93 15.07l2.83-2.83" />
+              <path d="M19.07 15.07l-2.83-2.83" />
+            </svg>
+          </div>
+          <div class="sun-info">
+            <span class="sun-label">Sunset</span>
+            <span class="sun-time-value" id="sunset-time">${formatTime12(times.maghrib)}</span>
+          </div>
         </div>
       </div>
-      <div class="sun-divider"></div>
-      <div class="sun-time-item sunset" title="Maghrib starts at Sunset">
-        <div class="sun-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 18a6 6 0 0 0-6-6v6h12v-6a6 6 0 0 0-6-6z" fill="currentColor" fill-opacity="0.1" />
-            <path d="M4 18h16" />
-            <path d="M12 18v4" />
-            <path d="M4.93 15.07l2.83-2.83" />
-            <path d="M19.07 15.07l-2.83-2.83" />
+
+      <div class="sun-card-divider"></div>
+
+      <div class="forbidden-container">
+        <div class="forbidden-header">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
           </svg>
+          <span>Forbidden Prayer Times (নিষিদ্ধ সময়)</span>
         </div>
-        <div class="sun-info">
-          <span class="sun-label">Sunset</span>
-          <span class="sun-time-value" id="sunset-time">${formatTime12(times.maghrib)}</span>
+        <div class="forbidden-grid">
+          <div class="forbidden-item" title="No prayer allowed for 15 minutes after sunrise">
+            <span class="forbidden-name">Sunrise</span>
+            <span class="forbidden-value">${forbiddenSunriseRange}</span>
+          </div>
+          <div class="forbidden-item" title="No prayer allowed for 6 minutes before Dhuhr/Jum'a (Zawal)">
+            <span class="forbidden-name">Pre-Dhuhr</span>
+            <span class="forbidden-value">${forbiddenDhuhrRange}</span>
+          </div>
+          <div class="forbidden-item" title="No prayer allowed for 15 minutes before Maghrib">
+            <span class="forbidden-name">Pre-Maghrib</span>
+            <span class="forbidden-value">${forbiddenMaghribRange}</span>
+          </div>
         </div>
       </div>
     `;
