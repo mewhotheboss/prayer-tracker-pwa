@@ -49,6 +49,7 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 
 ### 4. Settings & Management
 * **App Theme Switcher:** Set preference to Light, Dark, or System Default.
+* **Time Zone Notice:** Displays a notification banner highlighting that all prayer times, checklist resets, and streaks are configured for Dhaka, Bangladesh (BST) time.
 * Manage and delete custom amols.
 * Clear all application data with double-confirmation dialog and storage reset.
 * Export and import daily tracker records and custom amols to JSON files for backup and migration.
