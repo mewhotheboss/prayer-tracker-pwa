@@ -40,7 +40,7 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 
 ### 3. Insights & Analytics
 * **Daily Progress Ring:** Dynamic SVG circular progress bar rendering percentage of completed tasks for the active date.
-* **Numeric Stats:** Displays Timely, Complete, and Incomplete prayer percentages filtered by timeframe.
+* **Numeric Stats:** Displays Timely, Qaza, and Complete prayer percentages filtered by timeframe.
 * **Timeframe Selector:** Dropdown filtering insights by the last 30 days or specific calendar months.
 * **Weekly Grid:** Visual breakdown showing dots for the 5 prayers over the last 7 days.
 * **Spiritual Heatmap:** Interactive calendar grid mapping consistency score (0 to 5) for the active month. Clicking a day loads its checklist.

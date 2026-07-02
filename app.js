@@ -584,8 +584,8 @@ function renderInsights() {
   
   let totalPrayersTracked = 0;
   let onTimePrayers = 0;
+  let qazaPrayers = 0;
   let completePrayers = 0;
-  let incompletePrayers = 0;
   
   const allDates = Object.keys(records).sort();
   const todayObj = new Date();
@@ -624,35 +624,36 @@ function renderInsights() {
         if (stat === 'ON_TIME') {
           onTimePrayers++;
           completePrayers++;
-        } else if (stat === 'LATE' || stat === 'QAZA') {
+        } else if (stat === 'LATE') {
           completePrayers++;
-        } else {
-          incompletePrayers++;
+        } else if (stat === 'QAZA') {
+          qazaPrayers++;
+          completePrayers++;
         }
       });
     }
   });
 
   const onTimePercentage = totalPrayersTracked > 0 ? Math.round((onTimePrayers / totalPrayersTracked) * 100) : 0;
+  const qazaPercentage = totalPrayersTracked > 0 ? Math.round((qazaPrayers / totalPrayersTracked) * 100) : 0;
   const completePercentage = totalPrayersTracked > 0 ? Math.round((completePrayers / totalPrayersTracked) * 100) : 0;
-  const incompletePercentage = totalPrayersTracked > 0 ? Math.round((incompletePrayers / totalPrayersTracked) * 100) : 0;
 
   const onTimeEl = document.getElementById('stats-ontime-prayers');
+  const qazaEl = document.getElementById('stats-qaza-prayers');
   const completeEl = document.getElementById('stats-complete-prayers');
-  const incompleteEl = document.getElementById('stats-incomplete-prayers');
   
   if (onTimeEl) onTimeEl.textContent = `${onTimePercentage}%`;
+  if (qazaEl) qazaEl.textContent = `${qazaPercentage}%`;
   if (completeEl) completeEl.textContent = `${completePercentage}%`;
-  if (incompleteEl) incompleteEl.textContent = `${incompletePercentage}%`;
 
   const detailsText = timeframe === 'last-30' ? 'Last 30 Days' : monthLabel;
   const onTimeDet = document.getElementById('stats-ontime-details');
+  const qazaDet = document.getElementById('stats-qaza-details');
   const completeDet = document.getElementById('stats-complete-details');
-  const incompleteDet = document.getElementById('stats-incomplete-details');
   
   if (onTimeDet) onTimeDet.textContent = detailsText;
+  if (qazaDet) qazaDet.textContent = detailsText;
   if (completeDet) completeDet.textContent = detailsText;
-  if (incompleteDet) incompleteDet.textContent = detailsText;
 
   // C. Weekly Prayer grid breakdown (7 columns representing last 7 days)
   const weeklyContainer = document.getElementById('weekly-breakdown-container');

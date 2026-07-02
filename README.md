@@ -18,7 +18,7 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 
 ### 📈 Insights & Analytics
 * **Daily Progress Ring:** A dynamic SVG progress circle showing your completion percentage for the active day.
-* **Numeric Stats:** Displays your On-Time, Complete, and Incomplete prayer percentages filtered by timeframe.
+* **Numeric Stats:** Displays your On-Time, Qaza, and Complete prayer percentages filtered by timeframe.
 * **Timeframe Filter:** View statistics for the last 30 days or select specific calendar months.
 * **Weekly Dot Grid:** A visual summary showing dots representing the status of your 5 prayers over the last 7 days.
 * **Spiritual Heatmap:** An interactive calendar consistency grid mapping your daily spiritual scores (0 to 5) for the selected month. Click on any cell to open and edit the tracker checklist for that day.
