@@ -6,7 +6,7 @@ const PRAYER_METADATA = [
   { id: 'dhuhr', title: 'Dhuhr', desc: 'Noon Prayer • 4 Sunnah, 4 Fard, 2 Sunnah' },
   { id: 'asr', title: 'Asr', desc: 'Afternoon Prayer • 4 Fard' },
   { id: 'maghrib', title: 'Maghrib', desc: 'Sunset Prayer • 3 Fard, 2 Sunnah' },
-  { id: 'isha', title: 'Isha', desc: 'Night Prayer • 4 Fard, 2 Sunnah, 3 Witr' }
+  { id: 'isha', title: 'Isha', desc: 'Night Prayer • 4 Sunnah, 4 Fard, 2 Sunnah, 3 Witr' }
 ];
 
 const DEFAULT_AMOLS = [
@@ -440,7 +440,7 @@ function renderTracker() {
       const dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
       if (dateObj.getDay() === 5) {
         displayTitle = "Jum'a";
-        displayDesc = "Friday Congregational Prayer • 4 Sunnah, 2 Fard, 2 Sunnah";
+        displayDesc = "Friday Congregational Prayer • 4 Sunnah, 2 Fard, 4 Sunnah";
       }
     }
     
