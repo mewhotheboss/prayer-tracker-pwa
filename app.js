@@ -168,6 +168,9 @@ function initApp() {
       const targetView = document.getElementById(viewId);
       if (targetView) targetView.classList.add('active');
 
+      // Reset scroll position to top when changing views
+      window.scrollTo(0, 0);
+
       if (viewId === 'insights-view') {
         renderInsights();
       } else if (viewId === 'settings-view') {

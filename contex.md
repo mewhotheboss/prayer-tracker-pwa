@@ -113,7 +113,10 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
-* **Latest Verification (July 2, 2026):**
+* **Latest Verification (July 31, 2026):**
+  * **Navigation Scroll Reset Fix:** Resolved a bug where the window scroll position carried over to newly opened pages when switching between navigation tabs. In `app.js`, added `window.scrollTo(0, 0)` in the click handler to scroll back to the top on tab changes.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v14` and cache-busted references inside `index.html` and `sw.js` with `?v=14` for immediate updates.
+* **Previous Verification (July 2, 2026):**
   * **Forbidden Prayer Times Asr Exception Note:** Added a clarification footnote (`*Except Today's Asr`) and updated tooltip descriptions to highlight the exception allowing the current day's Asr prayer to be performed during the Pre-Maghrib forbidden window.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v13` and cache-busted `app.js` and `styles.css` with `?v=13` to deliver instant caching updates.
 * **Previous Verification (July 2, 2026):**
