@@ -680,6 +680,7 @@ function renderInsights() {
   
   let totalPrayersTracked = 0;
   let onTimePrayers = 0;
+  let latePrayers = 0;
   let qazaPrayers = 0;
   let completePrayers = 0;
   
@@ -721,6 +722,7 @@ function renderInsights() {
           onTimePrayers++;
           completePrayers++;
         } else if (stat === 'LATE') {
+          latePrayers++;
           completePrayers++;
         } else if (stat === 'QAZA') {
           qazaPrayers++;
@@ -731,23 +733,28 @@ function renderInsights() {
   });
 
   const onTimePercentage = totalPrayersTracked > 0 ? Math.round((onTimePrayers / totalPrayersTracked) * 100) : 0;
+  const latePercentage = totalPrayersTracked > 0 ? Math.round((latePrayers / totalPrayersTracked) * 100) : 0;
   const qazaPercentage = totalPrayersTracked > 0 ? Math.round((qazaPrayers / totalPrayersTracked) * 100) : 0;
   const completePercentage = totalPrayersTracked > 0 ? Math.round((completePrayers / totalPrayersTracked) * 100) : 0;
 
   const onTimeEl = document.getElementById('stats-ontime-prayers');
+  const lateEl = document.getElementById('stats-late-prayers');
   const qazaEl = document.getElementById('stats-qaza-prayers');
   const completeEl = document.getElementById('stats-complete-prayers');
   
   if (onTimeEl) onTimeEl.textContent = `${onTimePercentage}%`;
+  if (lateEl) lateEl.textContent = `${latePercentage}%`;
   if (qazaEl) qazaEl.textContent = `${qazaPercentage}%`;
   if (completeEl) completeEl.textContent = `${completePercentage}%`;
 
   const detailsText = timeframe === 'last-30' ? 'Last 30 Days' : monthLabel;
   const onTimeDet = document.getElementById('stats-ontime-details');
+  const lateDet = document.getElementById('stats-late-details');
   const qazaDet = document.getElementById('stats-qaza-details');
   const completeDet = document.getElementById('stats-complete-details');
   
   if (onTimeDet) onTimeDet.textContent = detailsText;
+  if (lateDet) lateDet.textContent = detailsText;
   if (qazaDet) qazaDet.textContent = detailsText;
   if (completeDet) completeDet.textContent = detailsText;
 

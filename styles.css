@@ -754,6 +754,12 @@ main {
   gap: 8px;
 }
 
+.insights-grid-four {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
 .stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);

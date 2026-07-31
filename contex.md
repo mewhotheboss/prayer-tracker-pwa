@@ -42,7 +42,7 @@ A premium, offline-first Progressive Web App (PWA) for tracking personal daily I
 
 ### 3. Insights & Analytics
 * **Daily Progress Ring:** Dynamic SVG circular progress bar rendering percentage of completed tasks for the active date.
-* **Numeric Stats:** Displays Timely, Qaza, and Complete prayer percentages filtered by timeframe.
+* **Numeric Stats:** Displays Timely, Late, Qaza, and Complete prayer percentages filtered by timeframe.
 * **Timeframe Selector:** Dropdown filtering insights by the last 30 days or specific calendar months.
 * **Weekly Grid:** Visual breakdown showing dots for the 5 prayers over the last 7 days.
 * **Spiritual Heatmap:** Interactive calendar grid mapping consistency score (0 to 5) for the active month. Clicking a day loads its checklist.
@@ -114,8 +114,9 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
 * **Latest Verification (July 31, 2026):**
+  * **Late Statistic Card in Insights:** Added a "Late" statistics card to the insights numeric stats grid. Calculated `latePercentage` and updated DOM elements. Restructured the grid layout to support 4 columns by creating the `.insights-grid-four` CSS grid container.
   * **Navigation Scroll Reset Fix:** Resolved a bug where the window scroll position carried over to newly opened pages when switching between navigation tabs. In `app.js`, added `window.scrollTo(0, 0)` in the click handler to scroll back to the top on tab changes.
-  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v14` and cache-busted references inside `index.html` and `sw.js` with `?v=14` for immediate updates.
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v15` and cache-busted references inside `index.html` and `sw.js` with `?v=15` for immediate updates.
 * **Previous Verification (July 2, 2026):**
   * **Forbidden Prayer Times Asr Exception Note:** Added a clarification footnote (`*Except Today's Asr`) and updated tooltip descriptions to highlight the exception allowing the current day's Asr prayer to be performed during the Pre-Maghrib forbidden window.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v13` and cache-busted `app.js` and `styles.css` with `?v=13` to deliver instant caching updates.
