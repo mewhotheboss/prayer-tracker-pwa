@@ -1549,3 +1549,68 @@ nav.bottom-nav {
   background: var(--accent-teal-bright);
 }
 
+/* Prayer-wise breakdown styles */
+.prayer-breakdown-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.prayer-stat-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prayer-stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prayer-stat-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.prayer-stat-count {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.prayer-stat-bar-wrapper {
+  display: flex;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-stats);
+}
+
+.prayer-stat-subbar {
+  height: 100%;
+  transition: var(--transition-smooth);
+}
+
+.prayer-stat-percentages {
+  display: flex;
+  gap: 12px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.prayer-stat-pct-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.prayer-stat-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+

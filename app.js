@@ -683,6 +683,17 @@ function renderInsights() {
   let latePrayers = 0;
   let qazaPrayers = 0;
   let completePrayers = 0;
+
+  const prayerStats = {};
+  PRAYER_METADATA.forEach(p => {
+    prayerStats[p.id] = {
+      total: 0,
+      onTime: 0,
+      late: 0,
+      qaza: 0,
+      notDone: 0
+    };
+  });
   
   const allDates = Object.keys(records).sort();
   const todayObj = new Date();
@@ -718,15 +729,21 @@ function renderInsights() {
         const stat = rec.prayers[p.id] || 'NOT_DONE';
         totalPrayersTracked++;
         
+        prayerStats[p.id].total++;
         if (stat === 'ON_TIME') {
           onTimePrayers++;
           completePrayers++;
+          prayerStats[p.id].onTime++;
         } else if (stat === 'LATE') {
           latePrayers++;
           completePrayers++;
+          prayerStats[p.id].late++;
         } else if (stat === 'QAZA') {
           qazaPrayers++;
           completePrayers++;
+          prayerStats[p.id].qaza++;
+        } else {
+          prayerStats[p.id].notDone++;
         }
       });
     }
@@ -757,6 +774,52 @@ function renderInsights() {
   if (lateDet) lateDet.textContent = detailsText;
   if (qazaDet) qazaDet.textContent = detailsText;
   if (completeDet) completeDet.textContent = detailsText;
+
+  // B2. Render individual prayer-wise breakdown
+  const indContainer = document.getElementById('individual-prayer-stats-container');
+  if (indContainer) {
+    indContainer.innerHTML = '';
+    PRAYER_METADATA.forEach(p => {
+      const stats = prayerStats[p.id];
+      const total = stats.total;
+      
+      const onTimePct = total > 0 ? Math.round((stats.onTime / total) * 100) : 0;
+      const latePct = total > 0 ? Math.round((stats.late / total) * 100) : 0;
+      const qazaPct = total > 0 ? Math.round((stats.qaza / total) * 100) : 0;
+      const notDonePct = total > 0 ? Math.max(0, 100 - onTimePct - latePct - qazaPct) : 100;
+      
+      const row = document.createElement('div');
+      row.className = 'prayer-stat-row';
+      
+      row.innerHTML = `
+        <div class="prayer-stat-header">
+          <span class="prayer-stat-name">${p.title}</span>
+          <span class="prayer-stat-count">${total} Day${total !== 1 ? 's' : ''} Tracked</span>
+        </div>
+        <div class="prayer-stat-bar-wrapper">
+          ${onTimePct > 0 ? `<div class="prayer-stat-subbar" style="background: var(--color-ontime); width: ${onTimePct}%;" title="Timely: ${onTimePct}%"></div>` : ''}
+          ${latePct > 0 ? `<div class="prayer-stat-subbar" style="background: var(--color-late); width: ${latePct}%;" title="Late: ${latePct}%"></div>` : ''}
+          ${qazaPct > 0 ? `<div class="prayer-stat-subbar" style="background: var(--color-qaza); width: ${qazaPct}%;" title="Qaza: ${qazaPct}%"></div>` : ''}
+          ${notDonePct > 0 ? `<div class="prayer-stat-subbar" style="background: var(--color-notdone); width: ${notDonePct}%;" title="Pending: ${notDonePct}%"></div>` : ''}
+        </div>
+        <div class="prayer-stat-percentages">
+          <span class="prayer-stat-pct-item">
+            <span class="prayer-stat-dot" style="background: var(--color-ontime);"></span>
+            Timely: <strong style="color: var(--text-primary); font-weight: 600;">${onTimePct}%</strong>
+          </span>
+          <span class="prayer-stat-pct-item">
+            <span class="prayer-stat-dot" style="background: var(--color-late);"></span>
+            Late: <strong style="color: var(--text-primary); font-weight: 600;">${latePct}%</strong>
+          </span>
+          <span class="prayer-stat-pct-item">
+            <span class="prayer-stat-dot" style="background: var(--color-qaza);"></span>
+            Qaza: <strong style="color: var(--text-primary); font-weight: 600;">${qazaPct}%</strong>
+          </span>
+        </div>
+      `;
+      indContainer.appendChild(row);
+    });
+  }
 
   // C. Weekly Prayer grid breakdown (7 columns representing last 7 days)
   const weeklyContainer = document.getElementById('weekly-breakdown-container');
@@ -998,12 +1061,29 @@ function calculateStreak() {
   updateStreakDisplays(activeStreak, bestStreak);
 }
 
+function formatStreak(days) {
+  if (days === 0) {
+    return '0 Days';
+  }
+  const months = Math.floor(days / 30);
+  const remainingDays = days % 30;
+
+  const monthParts = [];
+  if (months > 0) {
+    monthParts.push(`${months} Month${months !== 1 ? 's' : ''}`);
+  }
+  if (remainingDays > 0) {
+    monthParts.push(`${remainingDays} Day${remainingDays !== 1 ? 's' : ''}`);
+  }
+  return monthParts.join(' ');
+}
+
 function updateStreakDisplays(active, best) {
-  document.getElementById('active-streak-display').textContent = `${active} Day${active !== 1 ? 's' : ''}`;
+  document.getElementById('active-streak-display').textContent = formatStreak(active);
   
   const bestLabel = document.getElementById('stats-best-streak');
   if (bestLabel) {
-    bestLabel.textContent = `${best} Day${best !== 1 ? 's' : ''}`;
+    bestLabel.textContent = formatStreak(best);
   }
 }
 

@@ -18,7 +18,7 @@
   <!-- Manifest, Favicon & Styles -->
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=16">
   
   <!-- Inline script to prevent theme flash (FOUC) -->
   <script>
@@ -190,6 +190,14 @@
             <span class="stat-header" style="font-size: 0.65rem; letter-spacing: 0;">Complete</span>
             <span class="stat-value" id="stats-complete-prayers" style="font-size: 1.2rem; margin-top: 2px;">0%</span>
             <span class="stat-footer" id="stats-complete-details" style="font-size: 0.55rem; color: var(--text-muted);">Last 30 Days</span>
+          </div>
+        </div>
+
+        <!-- Individual Prayer Stats Card -->
+        <div class="weekly-bar-card prayer-breakdown-card">
+          <h3 class="heatmap-title">Prayer-wise Breakdown</h3>
+          <div class="prayer-breakdown-container" id="individual-prayer-stats-container">
+            <!-- Dynamically populated via app.js -->
           </div>
         </div>
 
@@ -369,6 +377,6 @@
 
   <!-- Main JavaScript File -->
   <script src="adhan.js"></script>
-  <script src="app.js?v=15"></script>
+  <script src="app.js?v=16"></script>
 </body>
 </html>

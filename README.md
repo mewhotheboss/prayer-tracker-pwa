@@ -17,10 +17,12 @@ Prayer Tracker is a premium, offline-first Progressive Web App (PWA) designed to
 * **Forbidden Prayer Times (নিষিদ্ধ সময়):** Computes and renders three specific daily forbidden intervals (Sunrise period: 15 mins after Sunrise; Zawal period: 7 mins before Dhuhr/Jum'a, ending 1 min before; Sunset period: 15 mins before Maghrib, ending 1 min before, with a footnote highlighting the exemption allowing the current day's Asr prayer).
 * **Daily Amols:** Toggle default checklist items such as **Morning Zikr**, **Evening Zikr**, and **Tahajjud**.
 * **Date Navigation:** Jump back and forth to log entries for past/future dates, with a relative indicator (e.g., "Yesterday", "2 days ago") and a calendar date picker.
+* **Spiritual Streak Display:** A header display showing your current active consecutive day streak, formatted in months and days (e.g., `1 Month 15 Days`) instead of just raw days.
 
 ### 📈 Insights & Analytics
 * **Daily Progress Ring:** A dynamic SVG progress circle showing your completion percentage for the active day.
 * **Numeric Stats:** Displays your Timely, Late, Qaza, and Complete prayer percentages filtered by timeframe.
+* **Prayer-wise Breakdown:** A custom stacked progress bar widget displaying the percentage of Timely, Late, and Qaza entries for each individual prayer (Fajr, Dhuhr, Asr, Maghrib, and Isha).
 * **Timeframe Filter:** View statistics for the last 30 days or select specific calendar months.
 * **Weekly Dot Grid:** A visual summary showing dots representing the status of your 5 prayers over the last 7 days.
 * **Spiritual Heatmap:** An interactive calendar consistency grid mapping your daily spiritual scores (0 to 5) for the selected month. Click on any cell to open and edit the tracker checklist for that day.

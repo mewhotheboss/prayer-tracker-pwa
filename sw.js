@@ -1,10 +1,10 @@
-const CACHE_NAME = 'prayer-tracker-v15';
+const CACHE_NAME = 'prayer-tracker-v16';
 const ASSETS = [
   './',
   './index.html',
-  './styles.css?v=15',
+  './styles.css?v=16',
   './adhan.js',
-  './app.js?v=15',
+  './app.js?v=16',
   './manifest.json',
   './icon.svg',
   './icon-192.png',

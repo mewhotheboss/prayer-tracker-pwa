@@ -113,7 +113,11 @@ On startup, the app checks for and migrates legacy data keys (`iman_records` and
 
 ## Current Status & Verification
 * **Status:** Fully functional, stable, and running.
-* **Latest Verification (July 31, 2026):**
+* **Latest Verification (August 8, 2026):**
+  * **Streak Display Month Formatting:** Modified active and best streak formatting in header to convert days to `X Month(s) Y Day(s)` (e.g. `1 Month 15 Days`).
+  * **Individual Prayer Statistics Breakdown:** Added a custom stacked progress bar widget inside the Insights tab displaying the percentage distribution of Timely, Late, and Qaza entries for each individual prayer (Fajr, Dhuhr, Asr, Maghrib, and Isha).
+  * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v16` and cache-busted CSS/JS file imports in `index.html` and `sw.js` with `?v=16` to deliver instant updates.
+* **Previous Verification (July 31, 2026):**
   * **Late Statistic Card in Insights:** Added a "Late" statistics card to the insights numeric stats grid. Calculated `latePercentage` and updated DOM elements. Restructured the grid layout to support 4 columns by creating the `.insights-grid-four` CSS grid container.
   * **Navigation Scroll Reset Fix:** Resolved a bug where the window scroll position carried over to newly opened pages when switching between navigation tabs. In `app.js`, added `window.scrollTo(0, 0)` in the click handler to scroll back to the top on tab changes.
   * **PWA Service Worker Update:** Bumped cache version to `prayer-tracker-v15` and cache-busted references inside `index.html` and `sw.js` with `?v=15` for immediate updates.
